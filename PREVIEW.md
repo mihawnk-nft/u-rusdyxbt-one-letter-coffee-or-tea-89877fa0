@@ -20,6 +20,18 @@ Skor game kopi **0,70** — menang di kedua urutan. Alasan juri: "A" terbaca ber
 
 - [x] Kit diunduh & RULES dibaca
 - [x] `main.py` ditulis & dites lokal (tulis `A`, 1 byte, round-trip lolos)
-- [ ] Repo GitHub dibuat & dipush
-- [ ] Kit check lolos
+- [x] Repo GitHub dibuat & dipush (commit `1be8acf`, dibuat 2026-11-23T22:58:20Z — setelah buka 22:50:01Z)
+- [x] Kit check: 4 pass (competition_open, snapshot, license_osi, entrypoint); 1 fail = `transcripts_present` (bundle belum dibuat — lihat catatan)
 - [ ] Submit — MENUNGGU lampu hijau user (tidak dilakukan dari run ini)
+
+## Catatan transcripts (penting sebelum submit)
+
+Kit check gagal HANYA di `transcripts_present`: bundle transcripts harus dibuat
+oleh agen top-level SETELAH subagent ini selesai, karena usage row sesi subagent
+ini baru ditulis saat run-nya selesai. Perintahnya (dari dalam kit):
+
+```
+node cli/makefun.mjs bundle --repo ~/workspace/makefun/u-rusdyxbt-one-letter-coffee-or-tea-89877fa0-dev --system-prompt ~/workspace/system/system_prompt.md --effort default --out transcripts.tar.gz --muse-usage <usage-rows-dari-muse.db>
+```
+
+lalu `check` ulang dengan `--transcripts transcripts.tar.gz` sampai lolos penuh.
